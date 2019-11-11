@@ -3,11 +3,12 @@ import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import sourceMaps from "rollup-plugin-sourcemaps";
 import camelCase from "lodash.camelcase";
-import typescript from "rollup-plugin-typescript2";
+import typescriptPlugin from "rollup-plugin-typescript2";
 import json from "rollup-plugin-json";
 import { terser } from "rollup-plugin-terser";
 import { parse } from "path";
 import bundleSize from "rollup-plugin-bundle-size";
+import typescript from "typescript";
 
 const pkg = require("./package.json");
 
@@ -37,7 +38,7 @@ export default {
     // Allow json resolution
     json(),
     // Compile TypeScript files
-    typescript({ useTsconfigDeclarationDir: true, typescript: require("typescript") }),
+    typescriptPlugin({ useTsconfigDeclarationDir: true, typescript }),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
     // Allow node_modules resolution, so you can use 'external' to control
