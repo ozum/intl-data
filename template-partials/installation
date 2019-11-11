@@ -1,0 +1,12 @@
+{% if package.scripts["build:microbundle:all"] %}
+
+| Format                             | Instructions                                                       |
+| ---------------------------------- | ------------------------------------------------------------------ |
+| **TypeScript**                     | `import { ... } from "{{ package.name }}";`                        |
+| **Node (CommonJS)**                | `const { ... } = require("{{ package.name }}");`                   |
+| **ES Modules (Browsers, webpack)** | `import { ... } from "{{ package.name }}";`                        |
+| **UMD (Browser Global)**           | `<script src="path/to/module/{{ package.name }}.umd.js"></script>` |
+
+Development versions can be found in `dist/dev` directory.
+
+{% endif %}

@@ -1,0 +1,27 @@
+{% include "module-header" %}
+
+# Installation
+
+{%- include "installation" -%}
+
+# Synopsis
+
+```ts
+import { getLocale, getCurrency } from "intl-data";
+
+const locale = getLocale("tr-TR");            // { digitGroupSeparator: ".", decimalCharacter: ",", currencySymbolPlacement: "p", percentSymbolPlacement: "p", percentSymbol: "%" }
+const currency = getCurrency("TRY");          // { symbol: "₺", decimalPlaces: 2 }
+const currency = getCurrency("TRY", "en-US"); // { symbol: '₺', decimalPlaces: 2, name: 'Turkish Lira' }
+```
+
+# Details
+
+Retrieves locale and currency.
+
+Modern browsers and node.js have builtin [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) object, and this module uses this object. As a result it does not need to transfer additional locale files or data.
+
+# API
+
+{% include "api.md" %}
+
+

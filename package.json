@@ -1,0 +1,91 @@
+{
+  "name": "intl-data",
+  "version": "1.0.0",
+  "description": "Tiny module to retrieve locale and currency data from native builtin Intl object without locale data transfer or additional locale files.",
+  "keywords": [],
+  "engines": {
+    "node": ">=10.8.0"
+  },
+  "source": "src/intl-data.ts",
+  "types": "dist/intl-data.d.ts",
+  "main": "dist/intl-data.js",
+  "module": "dist/intl-data.modern.js",
+  "umd:main": "dist/intl-data.umd.js",
+  "files": ["/bin", "/lib/**/!(*.spec|*.test)*.*", "/dist/**/!(*.spec|*.test)*.*", "/@types", "/module-files", "LICENSE"],
+  "homepage": "https: //github.com/ozum/intl-options",
+  "bugs": "https: //github.com/ozum/intl-options/issues",
+  "repository": "github:ozum/intl-options",
+  "author": {
+    "name": "Özüm Eldoğan"
+  },
+  "license": "",
+  "scripts": {
+    "build": "rm -rf dist && run-p build:microbundle:** 'build:microbundle:** -- -o dist/dev --target node'",
+    "build:microbundle:all": "microbundle -f cjs,umd",
+    "build:microbundle:modern": "microbundle -f modern",
+    "commit": "git-cz",
+    "commit:add": "git add -A && npm run commit",
+    "devkeeper:update": "devkeeper update",
+    "file:watch": "ts-node-dev --respawn --transpileOnly --compiler-options '{ \"module\": \"commonjs\" }'",
+    "format": "prettier --write --config .prettierrc --check 'src/**/*.+(js|jsx|json|less|css|ts|tsx|md|vue|gql)'",
+    "lint": "eslint --max-warnings=0 --ignore-path .gitignore --cache 'src/**/*.+(js|jsx|ts|tsx|vue)'",
+    "readme": "if grep -q '{% include \"api.md\" %}' 'README.njk'; then npm run typedoc:single-md; mkdir -p temp && mv api.md temp/; fi && readmeasy --partial-dirs temp,node_modules/devkeeper/module-files/template-partials && rm -rf temp",
+    "release": "(git diff --quiet && git diff --staged --quiet && echo No files has been changed) || (npm-run-all -p build commit:add && git checkout master && git pull origin master && standard-version --no-verify && npm run readme && git add README.md && git commit --amend --no-edit && git push --follow-tags origin master && git push --tags && npm publish)",
+    "test": "NODE_ENV=test jest --coverage --config=jest.config.json",
+    "test:watch": "NODE_ENV=test jest --watch --config=jest.config.json",
+    "typedoc:html": "rm -rf api-docs-html && typedoc --plugin typedoc-plugin-example-tag --mode file --out api-docs-html",
+    "typedoc:md": "rm -rf api-docs-md && typedoc --plugin typedoc-plugin-example-tag,typedoc-plugin-markdown --excludeExternals --excludePrivate --excludeProtected --excludeNotExported --hideIndexes --theme markdown --readme none --mode file --out api-docs-md && find api-docs-md -name \"index.md\" -exec sh -c 'mv \"$1\" \"${1%index.md}\"index2.md' - {} \\;",
+    "typedoc:single-md": "npm run typedoc:md && concat-md --dir-name-as-title api-docs-md > api.md && rm -rf api-docs-md",
+    "validate": "npm-run-all -p lint test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "devkeeper": "^0.1.42"
+  },
+  "devkeeperModifications": {
+    "files": [
+      ".gitignore",
+      ".commitlintrc",
+      ".czrc",
+      ".editorconfig",
+      ".eslintignore",
+      ".eslintrc.js",
+      ".gitattributes",
+      ".gitignore-to-rename",
+      ".huskyrc",
+      ".lintstagedrc",
+      ".prettierrc",
+      "jest.config.json",
+      "tsconfig.json"
+    ],
+    "objectKeys": [
+      "engines",
+      "main",
+      "types",
+      "source",
+      "module",
+      "umd:main",
+      "scripts.build",
+      "scripts.typedoc:md",
+      "scripts.typedoc:html",
+      "scripts.typedoc:single-md",
+      "scripts.readme",
+      "scripts.format",
+      "scripts.lint",
+      "scripts.test",
+      "scripts.test:watch",
+      "scripts.validate",
+      "scripts.commit",
+      "scripts.commit:add",
+      "scripts.release",
+      "scripts.file:watch",
+      "scripts.build:microbundle:all",
+      "scripts.build:microbundle:modern",
+      "scripts.devkeeper:update"
+    ],
+    "arrayKeys": {
+      "files": ["/bin", "/lib/**/!(*.spec|*.test)*.*", "/dist/**/!(*.spec|*.test)*.*", "/@types", "/module-files", "LICENSE"]
+    },
+    "version": "0.1.42"
+  }
+}
