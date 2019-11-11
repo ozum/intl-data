@@ -1,6 +1,6 @@
 {
   "name": "intl-data",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tiny module to retrieve locale and currency data from native builtin Intl object without locale data transfer or additional locale files.",
   "keywords": [],
   "engines": {
@@ -10,7 +10,14 @@
   "main": "dist/cjs/intl-data.js",
   "module": "dist/esm/intl-data.mjs",
   "umd:main": "dist/umd/intl-data.js",
-  "files": ["/bin", "/lib/**/!(*.spec|*.test)*.*", "/dist/**/!(*.spec|*.test)*.*", "/@types", "/module-files", "LICENSE"],
+  "files": [
+    "/bin",
+    "/lib/**/!(*.spec|*.test)*.*",
+    "/dist/**/!(*.spec|*.test)*.*",
+    "/@types",
+    "/module-files",
+    "LICENSE"
+  ],
   "homepage": "https: //github.com/ozum/intl-options",
   "bugs": "https: //github.com/ozum/intl-options/issues",
   "repository": "github:ozum/intl-options",
@@ -79,7 +86,14 @@
       "scripts.devkeeper:update"
     ],
     "arrayKeys": {
-      "files": ["/bin", "/lib/**/!(*.spec|*.test)*.*", "/dist/**/!(*.spec|*.test)*.*", "/@types", "/module-files", "LICENSE"]
+      "files": [
+        "/bin",
+        "/lib/**/!(*.spec|*.test)*.*",
+        "/dist/**/!(*.spec|*.test)*.*",
+        "/@types",
+        "/module-files",
+        "LICENSE"
+      ]
     },
     "version": "0.1.47"
   }
