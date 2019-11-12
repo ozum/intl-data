@@ -85,8 +85,8 @@ export function getCurrency(currencyCode: string | null | undefined, locale?: st
   return locale ? { ...currencyWithoutName, name: name[locale] } : currencyWithoutName;
 }
 
-export function getLocale(localeName: string, options?: { throwUnknown: true }): Locale;
-export function getLocale<T extends null | undefined>(currencyCode: T): T;
+export function getLocale(locale: string, options?: { throwUnknown: true }): Locale;
+export function getLocale<T extends null | undefined>(locale: T): T;
 /**
  * Returns locale details for given locale. Throws error for unsupported locales.
  *
