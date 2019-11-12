@@ -1,6 +1,6 @@
 {
   "name": "intl-data",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tiny module to retrieve locale and currency data from native builtin Intl object without locale data transfer or additional locale files.",
   "keywords": [],
   "engines": {

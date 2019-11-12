@@ -84,7 +84,7 @@ Modern browsers and node.js have builtin [Intl](https://developer.mozilla.org/en
 
 ▸ **getCurrency**(`currencyCode`: string): *[CurrencyWithoutName](#interfacescurrencywithoutnamemd)*
 
-*Defined in [intl-data.ts:42](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L42)*
+*Defined in [intl-data.ts:42](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L42)*
 
 Returns currency details for given currency and optionally locale. Throws error for unknown currency codes.
 
@@ -100,7 +100,7 @@ currency details for requested currency. Also returns `null` for `null` input an
 
 ▸ **getCurrency**(`currencyCode`: string, `locale`: string): *[Currency](#interfacescurrencymd)*
 
-*Defined in [intl-data.ts:43](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L43)*
+*Defined in [intl-data.ts:43](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L43)*
 
 Returns currency details for given currency and optionally locale. Throws error for unknown currency codes.
 
@@ -117,7 +117,7 @@ currency details for requested currency. Also returns `null` for `null` input an
 
 ▸ **getCurrency**<**T**>(`currencyCode`: T): *T*
 
-*Defined in [intl-data.ts:44](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L44)*
+*Defined in [intl-data.ts:44](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L44)*
 
 Returns currency details for given currency and optionally locale. Throws error for unknown currency codes.
 
@@ -139,26 +139,26 @@ ___
 
 ###  getLocale
 
-▸ **getLocale**(`localeName`: string, `options?`: undefined | object): *[Locale](#interfaceslocalemd)*
+▸ **getLocale**(`locale`: string, `options?`: undefined | object): *[Locale](#interfaceslocalemd)*
 
-*Defined in [intl-data.ts:88](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L88)*
+*Defined in [intl-data.ts:88](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L88)*
 
 Returns locale details for given locale. Throws error for unsupported locales.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`localeName` | string |
-`options?` | undefined &#124; object |
+Name | Type | Description |
+------ | ------ | ------ |
+`locale` | string | is the string with a BCP 47 language tag. If provided returned object contains currency name in given locale. |
+`options?` | undefined &#124; object | - |
 
 **Returns:** *[Locale](#interfaceslocalemd)*
 
 locale data for requested locale. Also returns `null` for `null` input and `undefined` for `undefined` input.
 
-▸ **getLocale**<**T**>(`currencyCode`: T): *T*
+▸ **getLocale**<**T**>(`locale`: T): *T*
 
-*Defined in [intl-data.ts:89](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L89)*
+*Defined in [intl-data.ts:89](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L89)*
 
 Returns locale details for given locale. Throws error for unsupported locales.
 
@@ -168,9 +168,9 @@ Returns locale details for given locale. Throws error for unsupported locales.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`currencyCode` | T |
+Name | Type | Description |
+------ | ------ | ------ |
+`locale` | T | is the string with a BCP 47 language tag. If provided returned object contains currency name in given locale. |
 
 **Returns:** *T*
 
@@ -201,7 +201,7 @@ Information about currency including it's name.
 
 *Inherited from [CurrencyWithoutName](#interfacescurrencywithoutnamemd).[decimalPlaces](#decimalplaces)*
 
-*Defined in [intl-data.ts:23](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L23)*
+*Defined in [intl-data.ts:23](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L23)*
 
 Number of digits used in decimal (fractional) part of the currency.
 
@@ -211,7 +211,7 @@ ___
 
 • **name**: *string*
 
-*Defined in [intl-data.ts:31](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L31)*
+*Defined in [intl-data.ts:31](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L31)*
 
 Name of the currency.
 
@@ -223,7 +223,7 @@ ___
 
 *Inherited from [CurrencyWithoutName](#interfacescurrencywithoutnamemd).[symbol](#symbol)*
 
-*Defined in [intl-data.ts:25](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L25)*
+*Defined in [intl-data.ts:25](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L25)*
 
 Currency symbol such as `₺`, `$`, `€`
 
@@ -248,7 +248,7 @@ Information about currency excluding it's name.
 
 • **decimalPlaces**: *number*
 
-*Defined in [intl-data.ts:23](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L23)*
+*Defined in [intl-data.ts:23](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L23)*
 
 Number of digits used in decimal (fractional) part of the currency.
 
@@ -258,7 +258,7 @@ ___
 
 • **symbol**: *string*
 
-*Defined in [intl-data.ts:25](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L25)*
+*Defined in [intl-data.ts:25](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L25)*
 
 Currency symbol such as `₺`, `$`, `€`
 
@@ -281,7 +281,7 @@ Information about locale.
 
 • **currencySymbolPlacement**: *"p" | "s"*
 
-*Defined in [intl-data.ts:13](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L13)*
+*Defined in [intl-data.ts:13](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L13)*
 
 Place of currency symbol: `p` for prefix such as `$1.95`, or `s` for suffix such as `1.95$`
 
@@ -291,7 +291,7 @@ ___
 
 • **decimalCharacter**: *string*
 
-*Defined in [intl-data.ts:9](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L9)*
+*Defined in [intl-data.ts:9](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L9)*
 
 Character to separate decimal (fraction) parts of the number from integer parts.
 
@@ -301,7 +301,7 @@ ___
 
 • **digitGroupSeparator**: *string*
 
-*Defined in [intl-data.ts:11](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L11)*
+*Defined in [intl-data.ts:11](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L11)*
 
 Grouping separators for integer parts, such as thousands separators or thousand/lakh/crore separators.
 
@@ -311,7 +311,7 @@ ___
 
 • **percentSymbol**: *string*
 
-*Defined in [intl-data.ts:17](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L17)*
+*Defined in [intl-data.ts:17](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L17)*
 
 Percent symbol. Some locales contains spcae for percent symbol such as `12 %`, and some not `12%`. This is used to differenciate them.
 
@@ -321,7 +321,7 @@ ___
 
 • **percentSymbolPlacement**: *"p" | "s"*
 
-*Defined in [intl-data.ts:15](https://github.com/ozum/intl-data/blob/621b797/src/intl-data.ts#L15)*
+*Defined in [intl-data.ts:15](https://github.com/ozum/intl-data/blob/c548fee/src/intl-data.ts#L15)*
 
 Place of percent symbol: `p` for prefix such as `%12`, or `s` for suffix such as `12%`
 
