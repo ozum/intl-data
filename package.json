@@ -18,9 +18,9 @@
     "/module-files",
     "LICENSE"
   ],
-  "homepage": "https: //github.com/ozum/intl-options",
-  "bugs": "https: //github.com/ozum/intl-options/issues",
-  "repository": "github:ozum/intl-options",
+  "homepage": "https://github.com/ozum/intl-data",
+  "bugs": "https://github.com/ozum/intl-data/issues",
+  "repository": "github:ozum/intl-data",
   "author": {
     "name": "Özüm Eldoğan"
   },
