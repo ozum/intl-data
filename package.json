@@ -44,7 +44,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "devkeeper": "^0.1.48"
+    "devkeeper": "^0.1.58"
   },
   "devkeeperModifications": {
     "files": [
@@ -95,6 +95,6 @@
         "LICENSE"
       ]
     },
-    "version": "0.1.48"
+    "version": "0.1.58"
   }
 }
