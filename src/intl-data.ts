@@ -42,6 +42,7 @@ const currencyCache: Record<CurrencyCode, CurrencyCache> = {};
 export function getCurrency(currencyCode: string): CurrencyWithoutName;
 export function getCurrency(currencyCode: string, locale: string): Currency;
 export function getCurrency<T extends null | undefined>(currencyCode: T, locale?: string): T;
+export function getCurrency(currencyCode: string | null | undefined, locale?: string): Currency | CurrencyWithoutName | null | undefined;
 /**
  * Returns currency details for given currency and optionally locale. Throws error for unknown currency codes.
  *
@@ -87,6 +88,7 @@ export function getCurrency(currencyCode: string | null | undefined, locale?: st
 
 export function getLocale(locale: string): Locale;
 export function getLocale<T extends null | undefined>(locale: T): T;
+export function getLocale(locale: string | null | undefined): Locale | undefined | null;
 /**
  * Returns locale details for given locale. Throws error for unsupported locales.
  *
