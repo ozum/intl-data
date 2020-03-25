@@ -1,6 +1,7 @@
 import { getLocale, getCurrency } from "./intl-data";
 
 const trLocale = {
+  code: "tr-TR",
   digitGroupSeparator: ".",
   decimalCharacter: ",",
   currencySymbolPlacement: "p",
@@ -9,6 +10,7 @@ const trLocale = {
 };
 
 const deLocale = {
+  code: "de-DE",
   currencySymbolPlacement: "s",
   decimalCharacter: ",",
   digitGroupSeparator: ".",
@@ -46,15 +48,15 @@ describe("getLocale", () => {
 
 describe("getCurrency", () => {
   it("should return currency with name.", () => {
-    expect(getCurrency("TRY", "tr-TR")).toEqual({ symbol: "₺", decimalPlaces: 2, name: "Türk lirası" });
+    expect(getCurrency("TRY", "tr-TR")).toEqual({ code: "TRY", symbol: "₺", decimalPlaces: 2, name: "Türk lirası" });
   });
 
   it("should return currency without name.", () => {
-    expect(getCurrency("TRY")).toEqual({ symbol: "₺", decimalPlaces: 2 });
+    expect(getCurrency("TRY")).toEqual({ code: "TRY", symbol: "₺", decimalPlaces: 2 });
   });
 
   it("should return currency without a symbol.", () => {
-    expect(getCurrency("OMR")).toEqual({ symbol: "OMR", decimalPlaces: 3 });
+    expect(getCurrency("OMR")).toEqual({ code: "OMR", symbol: "OMR", decimalPlaces: 3 });
   });
 
   it("should return null for null.", () => {

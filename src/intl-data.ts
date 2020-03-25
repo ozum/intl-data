@@ -5,6 +5,8 @@ type CurrencyCode = string;
 
 /** Information about locale. */
 export interface Locale {
+  /** BCP 47 language tag of the locale. This is simply string provided to get locale. Example: `tr-TR` */
+  code: LocaleCode;
   /** Character to separate decimal (fraction) parts of the number from integer parts. */
   decimalCharacter: string;
   /** Grouping separators for integer parts, such as thousands separators or thousand/lakh/crore separators. */
@@ -19,6 +21,8 @@ export interface Locale {
 
 /** Information about currency excluding it's name. */
 export interface CurrencyWithoutName {
+  /**  ISO 4217 currency codes */
+  code: CurrencyCode;
   /** Number of digits used in decimal (fractional) part of the currency. */
   decimalPlaces: number;
   /** Currency symbol such as `₺`, `$`, `€` */
@@ -69,7 +73,7 @@ export function getCurrency(currencyCode: string | null | undefined, locale?: st
     const textWithoutNumbers = textWithNumbers.replace(/0/g, "");
     const decimalPlaces = lengthWithNumbers - textWithoutNumbers.length - 1;
     const symbol = textWithoutNumbers.trim();
-    currencyCache[currencyCode] = { name: {}, symbol, decimalPlaces };
+    currencyCache[currencyCode] = { name: {}, code: currencyCode, symbol, decimalPlaces };
   }
 
   // Compute currency name in given locale
@@ -86,31 +90,32 @@ export function getCurrency(currencyCode: string | null | undefined, locale?: st
   return locale ? { ...currencyWithoutName, name: name[locale] } : currencyWithoutName;
 }
 
-export function getLocale(locale: string): Locale;
-export function getLocale<T extends null | undefined>(locale: T): T;
-export function getLocale(locale: string | null | undefined): Locale | undefined | null;
+export function getLocale(localeCode: string): Locale;
+export function getLocale<T extends null | undefined>(localeCode: T): T;
+export function getLocale(localeCode: string | null | undefined): Locale | undefined | null;
 /**
  * Returns locale details for given locale. Throws error for unsupported locales.
  *
- * @param locale is the string with a BCP 47 language tag. If provided returned object contains currency name in given locale.
+ * @param localeCode is the string with a BCP 47 language tag. If provided returned object contains currency name in given locale.
  * @returns locale data for requested locale. Also returns `null` for `null` input and `undefined` for `undefined` input.
  */
-export function getLocale(locale: string | null | undefined): Locale | undefined | null {
-  if (typeof locale !== "string") {
-    return locale === null ? null : undefined;
+export function getLocale(localeCode: string | null | undefined): Locale | undefined | null {
+  if (typeof localeCode !== "string") {
+    return localeCode === null ? null : undefined;
   }
 
-  if (Intl.NumberFormat.supportedLocalesOf(locale, { localeMatcher: "lookup" }).length === 0) {
-    throw new Error(`Unsupported locale: ${locale}.`);
+  if (Intl.NumberFormat.supportedLocalesOf(localeCode, { localeMatcher: "lookup" }).length === 0) {
+    throw new Error(`Unsupported locale: ${localeCode}.`);
   }
 
-  if (localeCache[locale] === undefined) {
-    const [digitGroupSeparator, decimalCharacter] = (1111.1).toLocaleString(locale).replace(/1/g, "");
-    const currencySymbolPlacement = (1).toLocaleString(locale, { style: "currency", currency: "USD" })[0] === "1" ? "s" : "p";
-    const percentString = (0.01).toLocaleString(locale, { style: "percent" });
+  if (localeCache[localeCode] === undefined) {
+    const [digitGroupSeparator, decimalCharacter] = (1111.1).toLocaleString(localeCode).replace(/1/g, "");
+    const currencySymbolPlacement = (1).toLocaleString(localeCode, { style: "currency", currency: "USD" })[0] === "1" ? "s" : "p";
+    const percentString = (0.01).toLocaleString(localeCode, { style: "percent" });
     const percentSymbolPlacement = percentString[0] === "1" ? "s" : "p";
     const percentSymbol = percentString.replace("1", ""); // Some locales contains space, some not.
-    localeCache[locale] = {
+    localeCache[localeCode] = {
+      code: localeCode,
       digitGroupSeparator,
       decimalCharacter,
       currencySymbolPlacement,
@@ -118,5 +123,5 @@ export function getLocale(locale: string | null | undefined): Locale | undefined
       percentSymbol,
     };
   }
-  return localeCache[locale];
+  return localeCache[localeCode];
 }
