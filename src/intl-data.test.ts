@@ -47,16 +47,16 @@ describe("getLocale", () => {
 });
 
 describe("getCurrency", () => {
-  it("should return currency with name.", () => {
+  it("should return currency.", () => {
     expect(getCurrency("TRY", "tr-TR")).toEqual({ code: "TRY", symbol: "₺", decimalPlaces: 2, name: "Türk lirası" });
   });
 
-  it("should return currency without name.", () => {
-    expect(getCurrency("TRY")).toEqual({ code: "TRY", symbol: "₺", decimalPlaces: 2 });
+  it("should return currency from cache.", () => {
+    expect(getCurrency("TRY", "tr-TR")).toEqual({ code: "TRY", symbol: "₺", decimalPlaces: 2, name: "Türk lirası" });
   });
 
   it("should return currency without a symbol.", () => {
-    expect(getCurrency("OMR")).toEqual({ code: "OMR", symbol: "OMR", decimalPlaces: 3 });
+    expect(getCurrency("OMR")).toEqual({ code: "OMR", symbol: "OMR", decimalPlaces: 3, name: "Omani rials" });
   });
 
   it("should return null for null.", () => {
@@ -69,5 +69,23 @@ describe("getCurrency", () => {
 
   it("should throw for unsupported locale.", () => {
     expect(() => getCurrency("XYZ")).toThrow("Invalid currency code");
+  });
+
+  it("should respect locale specific sign of the same currency", () => {
+    const expected = {
+      CNY: { code: "CNY", symbol: "CN¥", decimalPlaces: 2, name: "Chinese yuan" },
+      "CNY zh-CN": { code: "CNY", symbol: "¥", decimalPlaces: 2, name: "人民币" },
+      "CNY zh-TW": { code: "CNY", symbol: "CN¥", decimalPlaces: 2, name: "人民幣" },
+      "CNY tr-TR": { code: "CNY", symbol: "CN¥", decimalPlaces: 2, name: "Çin yuanı" },
+    };
+
+    const result = {
+      CNY: getCurrency("CNY"),
+      "CNY zh-CN": getCurrency("CNY", "zh-CN"),
+      "CNY zh-TW": getCurrency("CNY", "zh-TW"),
+      "CNY tr-TR": getCurrency("CNY", "tr-TR"),
+    };
+
+    expect(result).toEqual(expected);
   });
 });

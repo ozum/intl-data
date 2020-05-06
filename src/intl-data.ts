@@ -19,8 +19,10 @@ export interface Locale {
   percentSymbol: string;
 }
 
-/** Information about currency excluding it's name. */
-export interface CurrencyWithoutName {
+/** Information about currency */
+export interface Currency {
+  /** Name of the currency. */
+  name: string;
   /**  ISO 4217 currency codes */
   code: CurrencyCode;
   /** Number of digits used in decimal (fractional) part of the currency. */
@@ -29,24 +31,11 @@ export interface CurrencyWithoutName {
   symbol: string;
 }
 
-/** Information about currency including it's name. */
-export interface Currency extends CurrencyWithoutName {
-  /** Name of the currency. */
-  name: string;
-}
-
-/** @ignore */
-interface CurrencyCache extends CurrencyWithoutName {
-  name: Record<LocaleCode, string>;
-}
-
 const localeCache: Record<LocaleCode, Locale> = {};
-const currencyCache: Record<CurrencyCode, CurrencyCache> = {};
+const currencyCache: Record<CurrencyCode, Record<LocaleCode, Currency>> = {};
 
-export function getCurrency(currencyCode: string): CurrencyWithoutName;
-export function getCurrency(currencyCode: string, locale: string): Currency;
 export function getCurrency<T extends null | undefined>(currencyCode: T, locale?: string): T;
-export function getCurrency(currencyCode: string | null | undefined, locale?: string): Currency | CurrencyWithoutName | null | undefined;
+export function getCurrency(currencyCode: string | null | undefined, locale?: string): Currency | null | undefined;
 /**
  * Returns currency details for given currency and optionally locale. Throws error for unknown currency codes.
  *
@@ -54,40 +43,37 @@ export function getCurrency(currencyCode: string | null | undefined, locale?: st
  * @param locale is the optional string with a BCP 47 language tag. If provided returned object contains currency name in given locale.
  * @returns currency details for requested currency. Also returns `null` for `null` input and `undefined` for `undefined` input.
  */
-export function getCurrency(currencyCode: string | null | undefined, locale?: string): Currency | CurrencyWithoutName | null | undefined {
+export function getCurrency(
+  currencyCode: string | null | undefined,
+  locale = new Intl.NumberFormat().resolvedOptions().locale
+): Currency | null | undefined {
   if (typeof currencyCode !== "string") {
     return currencyCode === null ? null : undefined;
   }
 
   const commonOptions = { style: "currency", currency: currencyCode };
+  currencyCache[currencyCode] = currencyCache[currencyCode] || {};
 
   // Compute currency data
-  if (currencyCache[currencyCode] === undefined) {
-    const textWithNumbers = (0).toLocaleString("tr-TR", { ...commonOptions, currencyDisplay: "symbol" }).replace(",", ""); // "OMR 0000" or "$000" or "RWF 0" or "0000 OMR"... without decimal separator
-
+  if (currencyCache[currencyCode][locale] === undefined) {
+    const textWithNumbers = (0).toLocaleString(locale, { ...commonOptions, currencyDisplay: "symbol" }).replace(/[.,]/, ""); // "OMR 0000" or "$000" or "RWF 0" or "0000 OMR"... without decimal separator
     // eslint-disable-next-line no-irregular-whitespace
-    if ((0).toLocaleString("tr-TR", { ...commonOptions, currencyDisplay: "name" }).includes(currencyCode)) {
+    if ((0).toLocaleString(locale, { ...commonOptions, currencyDisplay: "name" }).includes(currencyCode)) {
       throw new Error(`Invalid currency code: ${currencyCode}.`);
     }
     const lengthWithNumbers = textWithNumbers.length;
     const textWithoutNumbers = textWithNumbers.replace(/0/g, "");
     const decimalPlaces = lengthWithNumbers - textWithoutNumbers.length - 1;
     const symbol = textWithoutNumbers.trim();
-    currencyCache[currencyCode] = { name: {}, code: currencyCode, symbol, decimalPlaces };
-  }
-
-  // Compute currency name in given locale
-  if (locale && !currencyCache[currencyCode].name[locale]) {
     const formattedCurrency = (0).toLocaleString(locale, { ...commonOptions, currencyDisplay: "name" });
-    const formattedNumber = (0).toLocaleString(locale, { minimumFractionDigits: currencyCache[currencyCode].decimalPlaces });
-    const rxSymbol = new RegExp(` ?${currencyCache[currencyCode].symbol} ?`);
+    const formattedNumber = (0).toLocaleString(locale, { minimumFractionDigits: decimalPlaces });
+    const rxSymbol = new RegExp(` ?${symbol} ?`);
     const rxNumber = new RegExp(` ?${formattedNumber} ?`);
     const name = formattedCurrency.replace(rxSymbol, "").replace(rxNumber, "");
-    currencyCache[currencyCode].name[locale] = name;
+    currencyCache[currencyCode][locale] = { name, code: currencyCode, symbol, decimalPlaces };
   }
 
-  const { name, ...currencyWithoutName } = currencyCache[currencyCode];
-  return locale ? { ...currencyWithoutName, name: name[locale] } : currencyWithoutName;
+  return currencyCache[currencyCode][locale];
 }
 
 export function getLocale(localeCode: string): Locale;
