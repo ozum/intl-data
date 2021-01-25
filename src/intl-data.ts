@@ -95,7 +95,7 @@ export function getLocale(localeCode: string | null | undefined): Locale | undef
   }
 
   if (localeCache[localeCode] === undefined) {
-    const [digitGroupSeparator, decimalCharacter] = (1111.1).toLocaleString(localeCode).replace(/1/g, "");
+    const [digitGroupSeparator, decimalCharacter] = (11111.1).toLocaleString(localeCode).replace(/1/g, "");
     const currencySymbolPlacement = (1).toLocaleString(localeCode, { style: "currency", currency: "USD" })[0] === "1" ? "s" : "p";
     const percentString = (0.01).toLocaleString(localeCode, { style: "percent" });
     const percentSymbolPlacement = percentString[0] === "1" ? "s" : "p";

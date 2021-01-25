@@ -1,4 +1,4 @@
-import { getLocale, getCurrency } from "./intl-data";
+import { getLocale, getCurrency, Locale } from "./intl-data";
 
 const trLocale = {
   code: "tr-TR",
@@ -9,28 +9,31 @@ const trLocale = {
   percentSymbol: "%",
 };
 
-const deLocale = {
-  code: "de-DE",
-  currencySymbolPlacement: "s",
-  decimalCharacter: ",",
-  digitGroupSeparator: ".",
-  percentSymbolPlacement: "s",
-};
+/**
+ * Checks whether given locale produces expected values by ignoring specila accented characters.
+ *
+ * @param locale is the locale to test.
+ * @param expected is the expected values as an array of "code", "currencySymbolPlacement", "decimalCharacter", "digitGroupSeparator", "percentSymbol", "percentSymbolPlacement".
+ * @returns whether given locale's result are equal to expected values.
+ */
+function isEqual(locale: string, expected: string[]): boolean {
+  const result = getLocale(locale) as Record<string, any>;
+  return Object.keys(result)
+    .sort()
+    .every((key, i) => result[key].localeCompare(expected[i], "en", { sensitivity: "base" }) === 0);
+}
 
 describe("getLocale", () => {
   it("should return locale for given locale code with prefix.", () => {
-    expect(getLocale("tr-TR")).toEqual(trLocale);
+    expect(isEqual("tr-TR", ["tr-TR", "p", ",", ".", "%", "p"])).toBe(true);
   });
 
   it("should return locale for given locale code with suffix.", () => {
-    // Somehow " %" seems not equal " %" in locale specific string.
-    const locale = getLocale("de-DE");
-    expect(locale).toMatchObject(deLocale);
-    expect(locale.percentSymbol.localeCompare(" %", "en", { sensitivity: "base" })).toBe(0); // Locale specific equality
+    expect(isEqual("de-DE", ["de-DE", "s", ",", ".", " %", "s"])).toBe(true);
   });
 
   it("should return locale from cache.", () => {
-    expect(getLocale("tr-TR")).toEqual(trLocale);
+    expect(isEqual("tr-TR", ["tr-TR", "p", ",", ".", "%", "p"])).toBe(true);
   });
 
   it("should return null for null.", () => {
@@ -43,6 +46,10 @@ describe("getLocale", () => {
 
   it("should throw for unsupported locale.", () => {
     expect(() => getLocale("XYZ")).toThrow("Unsupported locale");
+  });
+
+  it("should return correct locale for es-CO", () => {
+    expect(isEqual("es-CO", ["es-CO", "p", ",", ".", " %", "s"])).toBe(true);
   });
 });
 
