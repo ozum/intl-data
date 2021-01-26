@@ -42,6 +42,10 @@ describe("getLocale", () => {
   it("should return correct locale for es-CO", () => {
     expect(isEqual("es-CO", ["es-CO", "p", ",", ".", " %", "s"])).toBe(true);
   });
+
+  it("should return correct locale for ja-JP", () => {
+    expect(isEqual("ja-JP", ["ja-JP", "p", ".", ",", "%", "s"])).toBe(true);
+  });
 });
 
 describe("getCurrency", () => {
