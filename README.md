@@ -109,7 +109,7 @@ intl-data
 
 **Returns:** T
 
-Defined in: [intl-data.ts:37](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L37)
+Defined in: [intl-data.ts:37](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L37)
 
 ▸ **getCurrency**(`currencyCode`: _string_ | _null_ | _undefined_, `locale?`: _string_): [_Currency_](#interfacescurrencymd) | _null_ | _undefined_
 
@@ -122,7 +122,7 @@ Defined in: [intl-data.ts:37](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 **Returns:** [_Currency_](#interfacescurrencymd) | _null_ | _undefined_
 
-Defined in: [intl-data.ts:38](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L38)
+Defined in: [intl-data.ts:38](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L38)
 
 ---
 
@@ -138,7 +138,7 @@ Defined in: [intl-data.ts:38](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 **Returns:** [_Locale_](#interfaceslocalemd)
 
-Defined in: [intl-data.ts:79](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L79)
+Defined in: [intl-data.ts:79](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L79)
 
 ▸ **getLocale**<T\>(`localeCode`: T): T
 
@@ -156,7 +156,7 @@ Defined in: [intl-data.ts:79](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 **Returns:** T
 
-Defined in: [intl-data.ts:80](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L80)
+Defined in: [intl-data.ts:80](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L80)
 
 ▸ **getLocale**(`localeCode`: _string_ | _null_ | _undefined_): [_Locale_](#interfaceslocalemd) | _undefined_ | _null_
 
@@ -168,7 +168,7 @@ Defined in: [intl-data.ts:80](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 **Returns:** [_Locale_](#interfaceslocalemd) | _undefined_ | _null_
 
-Defined in: [intl-data.ts:81](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L81)
+Defined in: [intl-data.ts:81](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L81)
 
 # Interfaces
 
@@ -201,7 +201,7 @@ Information about currency
 
 ISO 4217 currency codes
 
-Defined in: [intl-data.ts:27](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L27)
+Defined in: [intl-data.ts:27](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L27)
 
 ---
 
@@ -211,7 +211,7 @@ Defined in: [intl-data.ts:27](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 Number of digits used in decimal (fractional) part of the currency.
 
-Defined in: [intl-data.ts:29](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L29)
+Defined in: [intl-data.ts:29](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L29)
 
 ---
 
@@ -221,7 +221,7 @@ Defined in: [intl-data.ts:29](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 Name of the currency.
 
-Defined in: [intl-data.ts:25](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L25)
+Defined in: [intl-data.ts:25](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L25)
 
 ---
 
@@ -231,7 +231,7 @@ Defined in: [intl-data.ts:25](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 Currency symbol such as `₺`, `$`, `€`
 
-Defined in: [intl-data.ts:31](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L31)
+Defined in: [intl-data.ts:31](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L31)
 
 <a name="interfaceslocalemd"></a>
 
@@ -264,7 +264,7 @@ Information about locale.
 
 BCP 47 language tag of the locale. This is simply string provided to get locale. Example: `tr-TR`
 
-Defined in: [intl-data.ts:9](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L9)
+Defined in: [intl-data.ts:9](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L9)
 
 ---
 
@@ -274,7 +274,7 @@ Defined in: [intl-data.ts:9](https://github.com/ozum/intl-data/blob/3ce84fe/src/
 
 Place of currency symbol: `p` for prefix such as `$1.95`, or `s` for suffix such as `1.95$`
 
-Defined in: [intl-data.ts:15](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L15)
+Defined in: [intl-data.ts:15](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L15)
 
 ---
 
@@ -284,7 +284,7 @@ Defined in: [intl-data.ts:15](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 Character to separate decimal (fraction) parts of the number from integer parts.
 
-Defined in: [intl-data.ts:11](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L11)
+Defined in: [intl-data.ts:11](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L11)
 
 ---
 
@@ -294,7 +294,7 @@ Defined in: [intl-data.ts:11](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 Grouping separators for integer parts, such as thousands separators or thousand/lakh/crore separators.
 
-Defined in: [intl-data.ts:13](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L13)
+Defined in: [intl-data.ts:13](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L13)
 
 ---
 
@@ -304,7 +304,7 @@ Defined in: [intl-data.ts:13](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 Percent symbol. Some locales contains spcae for percent symbol such as `12 %`, and some not `12%`. This is used to differenciate them.
 
-Defined in: [intl-data.ts:19](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L19)
+Defined in: [intl-data.ts:19](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L19)
 
 ---
 
@@ -314,4 +314,4 @@ Defined in: [intl-data.ts:19](https://github.com/ozum/intl-data/blob/3ce84fe/src
 
 Place of percent symbol: `p` for prefix such as `%12`, or `s` for suffix such as `12%`
 
-Defined in: [intl-data.ts:17](https://github.com/ozum/intl-data/blob/3ce84fe/src/intl-data.ts#L17)
+Defined in: [intl-data.ts:17](https://github.com/ozum/intl-data/blob/7f4cda4/src/intl-data.ts#L17)
