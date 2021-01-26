@@ -54,7 +54,7 @@ describe("getCurrency", () => {
   });
 
   it("should return currency without a symbol.", () => {
-    expect(getCurrency("OMR")).toEqual({ code: "OMR", symbol: "OMR", decimalPlaces: 3, name: "Omani rials" });
+    expect(getCurrency("OMR", "en-US")).toEqual({ code: "OMR", symbol: "OMR", decimalPlaces: 3, name: "Omani rials" });
   });
 
   it("should return null for null.", () => {
@@ -78,7 +78,7 @@ describe("getCurrency", () => {
     };
 
     const result = {
-      CNY: getCurrency("CNY"),
+      CNY: getCurrency("CNY", "en-US"),
       "CNY zh-CN": getCurrency("CNY", "zh-CN"),
       "CNY zh-TW": getCurrency("CNY", "zh-TW"),
       "CNY tr-TR": getCurrency("CNY", "tr-TR"),
