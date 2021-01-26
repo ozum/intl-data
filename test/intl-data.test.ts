@@ -1,13 +1,4 @@
-import { getLocale, getCurrency, Locale } from "./intl-data";
-
-const trLocale = {
-  code: "tr-TR",
-  digitGroupSeparator: ".",
-  decimalCharacter: ",",
-  currencySymbolPlacement: "p",
-  percentSymbolPlacement: "p",
-  percentSymbol: "%",
-};
+import { getLocale, getCurrency } from "../src/intl-data";
 
 /**
  * Checks whether given locale produces expected values by ignoring specila accented characters.
