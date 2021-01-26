@@ -38,7 +38,6 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install project dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true' # Over here!
         run: yarn
 
       - name: Run ESLint
